@@ -19,17 +19,17 @@ void setup() {
 
 
   //E.hatchMode(E.CONCENTRIC);
-  //E.hatchMode(E.PARALLEL);
+  E.hatchMode(E.PARALLEL);
   //E.hatchMode(E.SATIN);
   //E.hatchMode(E.SPIRAL); 
-  E.hatchMode(E.PERLIN);
+  //E.hatchMode(E.PERLIN);
   //E.hatchMode(E.CROSS);
 
 
   E.hatchSpacing(10); 
   E.hatchAngleDeg(45); 
    
-  E.fill(0,0,0);
+  E.fill(0,200,0);
   E.circle(300, 300, 200);
   
   E.hatchAngleDeg(90);
@@ -48,6 +48,6 @@ void setup() {
   // Don't forget to un-comment them when you want to export!
   //
   // E.optimize(); // VERY SLOW, but essential for file output! 
-  E.visualize();   // Display the embroidery path on-screen.
+  E.visualize(true, true, false);   // Display the embroidery path on-screen.
   // E.endDraw();  // Actually writes out the embroidery file.
 }

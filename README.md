@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-This is the written version of an embroidery workshop in the CCI, and can either accompany the live workshop or be worked through by itself. As we go through the exercises, it's a good idea to have the [PEmbroider Cheat Sheet](https://github.com/CreativeInquiry/PEmbroider/blob/master/PEmbroider_Cheat_Sheet.md) open in a tab for reference. These notes are also heavily adapted from the cheat sheet. This workshop is based on [Carpentries](https://carpentries.org/) format, which means that participants should code alongside.
-=======
-This is the written version of an embroidery workshop in the CCI, and can either accompany the live workshop or be worked through by itself. As we go through the exercises, it's a good idea to have the [PEmbroider Cheat Sheet](https://github.com/CreativeInquiry/PEmbroider/blob/master/PEmbroider_Cheat_Sheet.md) open in a tab for reference. These notes are heavily adapted from the cheat sheet.
->>>>>>> b5a1a9158a4aec14c90191e8ca781d008a7f1f48
+This is the written version of an embroidery workshop in the CCI, and can either accompany the live workshop or be worked through by itself. As we go through the exercises, it's a good idea to have the [PEmbroider Cheat Sheet](https://github.com/CreativeInquiry/PEmbroider/blob/master/PEmbroider_Cheat_Sheet.md) open in a tab for reference. These notes are also heavily adapted from the cheat sheet. This workshop is based on [Carpentries](https://carpentries.org/) format, which means that participants should code alongside whoever is running it.
 
 Copies of the files used for each of the exercises that can be downloaded [here](https://github.com/agnescameron/pembroider-workshop), but I'd recommend trying to generate the files yourself where possible.
 
@@ -43,7 +39,7 @@ void setup() {
   // Don't forget to un-comment them when you want to export!
   //
   // E.optimize(); // VERY SLOW, but essential for file output! 
-  E.visualize();   // Display the embroidery path on-screen.
+  E.visualize(true, true, false);   // Display the embroidery path on-screen.
   // E.endDraw();  // Actually writes out the embroidery file.
 }
 ```
@@ -52,7 +48,7 @@ In order, this file:
 * sets up a new canvas, of size 600x600 pixels
 * tells the computer that it's an embroidery canvas, and sets an output file path
 * draws a line on the canvas
-* shows it to us (visualise)
+* shows it to us (visualize) -- the `true, true, false` part tells the computer whether to draw colours, stitches and the routes taken by the machine. I prefer these settings but they can all be helpful
 
 There are some other lines that are 'commented out' (have slashes in front of them) and don't run. These we might use later but for now we don't need to use them.
 
@@ -172,50 +168,137 @@ E.hatchAngleDeg(angle);  // sets the orientation for SATIN & PARALLEL (in degree
 E.fill(R, G, B);         // sets your thread color (numbers between 0-255)
 ```
 
-<<<<<<< HEAD
 ### Exercise 3.2
 * Try making one shape with a diagonal hatch fill, and another with a vertical fill. What happens when you place them on top of each other?
 * What happens when you adjust spacing on concentric mode? What about Perlin mode?
 * To un-set fill settings, you can use the line `E.noFill()`. Can you use this line to make some code that draws a filled shape, and then draws an outline shape afterward?
-=======
-From now on, unless we're changing more of the file, I'm going to list just the 'content' code that we're changing, using `...` to represent the rest of the file. In our last exercise, the content was a single line -- the `E.line()` method -- but it can be more -- the important part is that it goes in the same place in the file each time.
 
-Try changing out the line for a circle:
+Another really important line is the `setStitch()` property. This sets the length of the stitch. Unlike hatch spacing, setStitch takes 3 arguments:
+
+```
+E.setStitch(minLength, desiredLength, noise);
+```
+
+* minLength: the shortest the stitch can possibly be
+* desiredLength: what length most stitches should be
+* noise: how much this should vary (e.g. should the stitches be very even). The noise property changes the texture of fills significantly.
+
+#### Exercise 3.3
+* experiment with modifying the stitch lengths in your fills
+
+## 4. Stroke and Stitch Settings
+
+The final group of settings we're going to look at is modifying the stroke (line) style. Similarly to fills, you need to modify the settings before drawing your line. 
+
+There are 2 stroke types in PEmbroider; tangent is the one we've been using by default, but perpendicular can be used to get a thicker, more defined outline.
+
+```
+E.strokeMode(E.PERPENDICULAR);  // Stitches are perpendicular to the stroke
+E.strokeMode(E.TANGENT);         // Stitches go in the same direction as stroke
+```
+
+As before, stroke color can be set using RGB values. The other settings are the thickness of the line (stroke weight) and the stroke spacing (e.g. for perpendicular strokes).
+
+```
+E.stroke(R, G, B);         // sets the stroke color, just like Processing.
+E.strokeWeight(width);     // sets the thickness of the stroke (in machine units)
+E.strokeSpacing(spacing);  // sets the density of the hatching within the stroke
+```
+
+#### Exercise 4.1
+* create a file with 4 different lines, each with different stroke settings. How much variation can you get?
+
+## 5. Loops and Randomness
+
+Now we have a good idea of what you can do with PEmbroider's API, we can try out some generative code. 
+
+#### For loops
+
+For loops are structures that allow the same piece of code to be repeated multiple times with different inputs. We will have a go with them here, but for a full tutorial it's worth going through this page on [for loops in Processing](https://happycoding.io/tutorials/processing/for-loops).
+
+We're going to try out a for loop that repeatedly draws lines on the canvas, changing the position of the line each time it draws.
 
 ```
 ...
-
-E.circle(200, 200, 200)
+for (int i = 1; i < 10; i++) {
+  E.line(50, i*50, 550, i*50);
+}
 ...
 ```
 
-You should see a slightly off-center circle. In the documentation, the `E.circle()` method is listed as:
+In this code, we create a number, `i`, that will go from 1 to 10, increasing every time. The first time the code runs, `i` is equal to 1, and so `i*50=50`. The next time, `i=2`, so `i*50=100`, and so on, up till `i` reaches 9. `i` cannot reach 10 (as the code will only run for i<10) and so the for loop ends. 
+
+#### Exercise 5.1
+* What happens when the number multiplying `i` is different for `y1` and `y2`?
+* Can you make a series of vertical lines instead of horizontal lines by changing where `i` is used?
+* Can you draw a grid?
+* What happens when you increase and decrease the number of repeats (e.g. the number 10 in the example)
+* Experiment with using `i` in different positions. What happens when you add or subtract it (or multiples of it)? Can you make a radial pattern?
+
+#### Random numbers
+
+Another very useful tool for making generative patterns is randomness. Unlike the code we were using before (which used scaled variations where we could predict what the outcome would be), randomness adds an element of chance. In Processing, the function `random(50)` will return a random number between 0-50. This number will be a decimal (float) rather than a whole number (int), so if we want to use it like a whole number we also need to use the `int()` method.
 
 ```
-E.circle(x, y, r);
+...
+for (int i = 1; i < 10; i++) {
+  E.circle(50 + i*50, 100, int(random(50)));
+}
+...
 ```
 
-### Exercise 2.1
-* What do you think `r` represents in this method?
-* Can you place the circle in the center of the canvas? What about a circle that fills the whole canvas?
-* The PEmbroider method for drawing a rectangle is `E.rect(x, y, w, h);`. Can you replace the circle-drawing line with a line that draws a rectangle instead? What do you think `w` and `h` represent?
 
-PEmbroider also has good support for merging and joining composite shapes. This can quickly allow us to create more complex drawings. In this example, we merge together 2 circles:
+#### Exercise 5.2
+* Run this code a few times. What do you notice? What is being randomly varied?
+* What happens when you add a number to the random number? What if you multiply it by something?
+* Can you make the randomness affect the y position?
 
-```java
-// Merge two circles into a peanut shape
-E.beginComposite();
-  E.composite.circle(320, 250, 200);
-  E.composite.circle(420, 250, 200);
-  // add more, etc. ...
-E.endComposite(); 
+#### Nesting for loops
+
+The last thing we will look at is using 2 nested for loops to create 2D designs. This isn't the only way to achieve this -- remember the grids from exercise 5.1 -- but this will help us a lot. 
+
+Before we get there, we could also look at what happens when we nest for loops *inside other things*, in this case, the composite shapes code from before. 
+
 ```
+...
+  E.beginComposite();
+  for (int i = 1; i < 10; i++) {
+    E.composite.circle(50 + i*50, 100, 50 + int(random(50)));
+  }
+  E.endComposite(); 
+...
+```
+By putting the for loop *inside* `E.beginComposite();` and `E.endComposite();`, it's the same (from the point of view of the computer) as writing 10 separate composite circle lines, but for us it's a whole lot quicker.
 
-### Exercise 2.2
-* Experiment with changing the size and the position of the circles. What happens when you make one of the circles very large?
-* Try adding a third circle. Can you make a clover shape? What about a snowman?
-* What happens when you add `E.composite.circle(420, 250, 200);` after the line `E.endComposite();`? Why do you think that happened?
-* Can you make a composite from a rectangle and a circle? Do you need to add anything to the original rectangle-drawing method?
-* The PEmbroider method for drawing a triangle is `E.triangle(x1, y1, x2, y2, x3, y3);`. Can you make a composite shape from a triangle and a circle?
+and look! A beautiful worm: 
 
->>>>>>> b5a1a9158a4aec14c90191e8ca781d008a7f1f48
+[![](https://wiki.cci.arts.ac.uk/uploads/images/gallery/2022-08/scaled-1680-/9BYuJanjgl31Njzx-image-1660229200690-46-37.png)](https://wiki.cci.arts.ac.uk/uploads/images/gallery/2022-08/9BYuJanjgl31Njzx-image-1660229200690-46-37.png)
+
+We can use the same principle to put one for loop inside another:
+
+```
+  for (int i = 1; i < 10; i++) {
+    for (int j = 1; j < 10; j++) {
+    E.circle(i*50, j*50, 50 + int(random(50)));
+    }
+  }
+```
+Now we get a whole grid of circles!
+
+#### Exercise 5.3
+* You can also use `random(-60, 60)` to generate a number that can be positive or negative. Try using this in one of the position values.
+* Have a go at making these circles into a composite shape. What happens when you change the numbers that are multiplied and added? Have a go at playing with these till you get an image that you like.
+* Can you do this with a different shape? What about triangles?
+
+Here's one I made earlier:
+[![](https://wiki.cci.arts.ac.uk/uploads/images/gallery/2022-08/scaled-1680-/EFBLrrMZUYEnEysD-image-1660230369677-06-05.png)](https://wiki.cci.arts.ac.uk/uploads/images/gallery/2022-08/EFBLrrMZUYEnEysD-image-1660230369677-06-05.png)
+
+## 6. Further reading and extension exercises
+
+We've scratched the surface of PEmbroider's [full capabilities](https://github.com/CreativeInquiry/PEmbroider/blob/master/API.md), which include things like Bézier curves, image imports, interpolation, clipping and more.
+
+#### Extension exercises
+
+* Have a go at using randomness to control the fill, colour, and spacing properties of different shapes. 
+* Take a look at the `shape_culling` example in the PEmbroider examples folder. Have a go at using your favourite of the culling options on different overlapping shapes. Can you add composite shapes to their code? How do they compare?
+* Take a look at the `hatchangle_auto` demo. What lines are they using to follow the mouse? Could you use those numbers to generate other things?
