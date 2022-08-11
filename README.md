@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 This is the written version of an embroidery workshop in the CCI, and can either accompany the live workshop or be worked through by itself. As we go through the exercises, it's a good idea to have the [PEmbroider Cheat Sheet](https://github.com/CreativeInquiry/PEmbroider/blob/master/PEmbroider_Cheat_Sheet.md) open in a tab for reference. These notes are also heavily adapted from the cheat sheet. This workshop is based on [Carpentries](https://carpentries.org/) format, which means that participants should code alongside.
+=======
+This is the written version of an embroidery workshop in the CCI, and can either accompany the live workshop or be worked through by itself. As we go through the exercises, it's a good idea to have the [PEmbroider Cheat Sheet](https://github.com/CreativeInquiry/PEmbroider/blob/master/PEmbroider_Cheat_Sheet.md) open in a tab for reference. These notes are heavily adapted from the cheat sheet.
+>>>>>>> b5a1a9158a4aec14c90191e8ca781d008a7f1f48
 
 Copies of the files used for each of the exercises that can be downloaded [here](https://github.com/agnescameron/pembroider-workshop), but I'd recommend trying to generate the files yourself where possible.
 
@@ -168,7 +172,50 @@ E.hatchAngleDeg(angle);  // sets the orientation for SATIN & PARALLEL (in degree
 E.fill(R, G, B);         // sets your thread color (numbers between 0-255)
 ```
 
+<<<<<<< HEAD
 ### Exercise 3.2
 * Try making one shape with a diagonal hatch fill, and another with a vertical fill. What happens when you place them on top of each other?
 * What happens when you adjust spacing on concentric mode? What about Perlin mode?
 * To un-set fill settings, you can use the line `E.noFill()`. Can you use this line to make some code that draws a filled shape, and then draws an outline shape afterward?
+=======
+From now on, unless we're changing more of the file, I'm going to list just the 'content' code that we're changing, using `...` to represent the rest of the file. In our last exercise, the content was a single line -- the `E.line()` method -- but it can be more -- the important part is that it goes in the same place in the file each time.
+
+Try changing out the line for a circle:
+
+```
+...
+
+E.circle(200, 200, 200)
+...
+```
+
+You should see a slightly off-center circle. In the documentation, the `E.circle()` method is listed as:
+
+```
+E.circle(x, y, r);
+```
+
+### Exercise 2.1
+* What do you think `r` represents in this method?
+* Can you place the circle in the center of the canvas? What about a circle that fills the whole canvas?
+* The PEmbroider method for drawing a rectangle is `E.rect(x, y, w, h);`. Can you replace the circle-drawing line with a line that draws a rectangle instead? What do you think `w` and `h` represent?
+
+PEmbroider also has good support for merging and joining composite shapes. This can quickly allow us to create more complex drawings. In this example, we merge together 2 circles:
+
+```java
+// Merge two circles into a peanut shape
+E.beginComposite();
+  E.composite.circle(320, 250, 200);
+  E.composite.circle(420, 250, 200);
+  // add more, etc. ...
+E.endComposite(); 
+```
+
+### Exercise 2.2
+* Experiment with changing the size and the position of the circles. What happens when you make one of the circles very large?
+* Try adding a third circle. Can you make a clover shape? What about a snowman?
+* What happens when you add `E.composite.circle(420, 250, 200);` after the line `E.endComposite();`? Why do you think that happened?
+* Can you make a composite from a rectangle and a circle? Do you need to add anything to the original rectangle-drawing method?
+* The PEmbroider method for drawing a triangle is `E.triangle(x1, y1, x2, y2, x3, y3);`. Can you make a composite shape from a triangle and a circle?
+
+>>>>>>> b5a1a9158a4aec14c90191e8ca781d008a7f1f48
