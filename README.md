@@ -60,12 +60,14 @@ The pink dots represent the ends of stitches, where the needle enters the fabric
 
 The first thing we will look at is the structure of the canvas. If you like, you can also try 'commenting out' the content line, to just see a plain canvas.
 
-### Exercise 1.1
+#### Exercise 1.1
 
 * Can you make the canvas larger? 
 * Can you make the canvas rectangular rather than square?
 
-Now we will look at lines. The PEmbroider code for drawing a line is:
+### Drawing lines
+
+The PEmbroider code for drawing a line is:
 
 ```
 E.line(x1, y1, x2, y2);
@@ -73,7 +75,7 @@ E.line(x1, y1, x2, y2);
 
 This means that (x1, y1) is the coordinates of the point where the line starts, and (x2, y2) is the point where the line ends. The `E.line()` part means "use the line function that belongs to PEmbroider, which is represented in our code by the letter E". We call this a 'method' In our code, we get a diagonal line because we draw from the point (0, 0) to the point (600, 600) (the edge of the canvas).
 
-### Exercise 1.2
+#### Exercise 1.2
 * Can you make the line draw only halfway across the original canvas?
 * Are you able to draw a vertical line? What about drawing 2 lines?
 
@@ -95,10 +97,12 @@ You should see a slightly off-center circle. In the documentation, the `E.circle
 E.circle(x, y, r);
 ```
 
-### Exercise 2.1
+#### Exercise 2.1
 * What do you think `r` represents in this method?
 * Can you place the circle in the center of the canvas? What about a circle that fills the whole canvas?
 * The PEmbroider method for drawing a rectangle is `E.rect(x, y, w, h);`. Can you replace the circle-drawing line with a line that draws a rectangle instead? What do you think `w` and `h` represent?
+
+### Composite Shapes
 
 PEmbroider also allows us to merge outlines to make composite shapes. This can quickly allow us to create more complex drawings. In this example, we merge together 2 circles:
 
@@ -111,7 +115,7 @@ E.endComposite();
 ...
 ```
 
-### Exercise 2.2
+#### Exercise 2.2
 * Experiment with changing the size and the position of the circles. What happens when you make one of the circles very large?
 * Try adding a third circle. Can you make a clover shape? What about a snowman?
 * What happens when you move the line `E.composite.circle(420, 250, 200);` to after the line `E.endComposite();`? Why do you think that happened?
@@ -143,6 +147,8 @@ E.circle(300, 300, 200);
 ...
 ```
 
+### Fill Types
+
 There are 6 different fill types in total in PEmbroider. These can each be set using the following lines of code:
 
 ```
@@ -154,9 +160,11 @@ There are 6 different fill types in total in PEmbroider. These can each be set u
     E.hatchMode(E.CROSS);
 ```
 
-### Exercise 3.1
+#### Exercise 3.1
 * Instead of drawing a circle, try and fill one of the shapes you made in the last exercise
 * One at a time, try out the different fill types on your shape. Which is your favourite?
+
+### Fill Settings
 
 As well as being able to change the type of fill, it's also possible to change the fill settings, namely the spacing of the fill lines, the colour of the fill, and the angle of the fill lines (for satin and parallel fills, where the lines have a prevailing angle).
 
@@ -168,7 +176,7 @@ E.hatchAngleDeg(angle);  // sets the orientation for SATIN & PARALLEL (in degree
 E.fill(R, G, B);         // sets your thread color (numbers between 0-255)
 ```
 
-### Exercise 3.2
+#### Exercise 3.2
 * Try making one shape with a diagonal hatch fill, and another with a vertical fill. What happens when you place them on top of each other?
 * What happens when you adjust spacing on concentric mode? What about Perlin mode?
 * To un-set fill settings, you can use the line `E.noFill()`. Can you use this line to make some code that draws a filled shape, and then draws an outline shape afterward?
@@ -212,7 +220,7 @@ E.strokeSpacing(spacing);  // sets the density of the hatching within the stroke
 
 Now we have a good idea of what you can do with PEmbroider's API, we can try out some generative code. 
 
-#### For loops
+### For loops
 
 For loops are structures that allow the same piece of code to be repeated multiple times with different inputs. We will have a go with them here, but for a full tutorial it's worth going through this page on [for loops in Processing](https://happycoding.io/tutorials/processing/for-loops).
 
@@ -235,7 +243,7 @@ In this code, we create a number, `i`, that will go from 1 to 10, increasing eve
 * What happens when you increase and decrease the number of repeats (e.g. the number 10 in the example)
 * Experiment with using `i` in different positions. What happens when you add or subtract it (or multiples of it)? Can you make a radial pattern?
 
-#### Random numbers
+### Random numbers
 
 Another very useful tool for making generative patterns is randomness. Unlike the code we were using before (which used scaled variations where we could predict what the outcome would be), randomness adds an element of chance. In Processing, the function `random(50)` will return a random number between 0-50. This number will be a decimal (float) rather than a whole number (int), so if we want to use it like a whole number we also need to use the `int()` method.
 
@@ -253,7 +261,7 @@ for (int i = 1; i < 10; i++) {
 * What happens when you add a number to the random number? What if you multiply it by something?
 * Can you make the randomness affect the y position?
 
-#### Nesting for loops
+### Nesting for loops
 
 The last thing we will look at is using 2 nested for loops to create 2D designs. This isn't the only way to achieve this -- remember the grids from exercise 5.1 -- but this will help us a lot. 
 
@@ -297,7 +305,7 @@ Here's one I made earlier:
 
 We've scratched the surface of PEmbroider's [full capabilities](https://github.com/CreativeInquiry/PEmbroider/blob/master/API.md), which include things like Bézier curves, image imports, interpolation, clipping and more.
 
-#### Extension exercises
+### Extension exercises
 
 * Have a go at using randomness to control the fill, colour, and spacing properties of different shapes. 
 * Take a look at the `shape_culling` example in the PEmbroider examples folder. Have a go at using your favourite of the culling options on different overlapping shapes. Can you add composite shapes to their code? How do they compare?
