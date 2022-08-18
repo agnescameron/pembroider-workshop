@@ -25,23 +25,23 @@ void setup() {
   //}
 
   //circles
-  E.beginComposite();
-  for (int i = 1; i < 10; i++) {
-    for (int j = 1; j < 10; j++) {
-    E.circle(i*50, j*50, 20 + int(random(50)));
-    }
-  }
-  E.endComposite();
-
-  // playing with triangles
   //E.beginComposite();
   //for (int i = 1; i < 10; i++) {
   //  for (int j = 1; j < 10; j++) {
-  //  E.composite.triangle(i*60 + int(random(-60, 60)) , j*60 -int(random(60)), i*60 + int(random(60)), j*60 + int(random(60)), i*60 - int(random(60)), j*60 + int(random(60)));
+  //  E.circle(i*50, j*50, 20 + int(random(50)));
   //  }
   //}
-  
   //E.endComposite();
+
+  // playing with triangles
+  E.beginComposite();
+  for (int i = 1; i < 10; i++) {
+    for (int j = 1; j < 10; j++) {
+    E.composite.triangle(i*60 + int(random(-60, 60)) , j*60 -int(random(60)), i*60 + int(random(60)), j*60 + int(random(60)), i*60 - int(random(60)), j*60 + int(random(60)));
+    }
+  }
+  
+  E.endComposite();
   //----------  
   // Visualization and export:
   // NOTE: Leave optimize() and endDraw() commented out,
