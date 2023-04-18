@@ -21,17 +21,26 @@ void setup() {
  
   E.strokeMode(E.PERPENDICULAR);
   E.strokeWeight(10);     // sets the thickness of the stroke (in machine units)
-  E.line(10, 30, 430, 220);
+  E.rect(10, 30, 430, 220);
 
 
   E.strokeMode(E.PERPENDICULAR);
-  E.strokeWeight(20);     // sets the thickness of the stroke (in machine units)
-  E.line(450, 50, 150, 120);
-
-
-  E.strokeMode(E.TANGENT);
   E.strokeWeight(5);     // sets the thickness of the stroke (in machine units)
-  E.line(30, 120, 110, 50);
+ E.strokeSpacing(10);
+  E.circle(450, 450, 200);
+
+
+ E.strokeSpacing(1);
+  E.strokeMode(E.TANGENT);
+  E.strokeWeight(50);     // sets the thickness of the stroke (in machine units)
+
+  E.beginShape();
+  E.vertex(30, 120);
+  E.vertex(150, 300);
+  E.vertex(430, 320);
+  E.vertex(100, 450);
+    E.vertex(30, 120);
+  E.endShape();
 
   E.setStitch(30, 50, 30);
   E.strokeMode(E.TANGENT);

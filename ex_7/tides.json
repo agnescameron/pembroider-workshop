@@ -1,0 +1,73 @@
+{ 
+  "@context" : "http://environment.data.gov.uk/flood-monitoring/meta/context.jsonld" ,
+  "meta" : { 
+    "publisher" : "Environment Agency" ,
+    "licence" : "http://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/" ,
+    "documentation" : "http://environment.data.gov.uk/flood-monitoring/doc/reference" ,
+    "version" : "0.9" ,
+    "comment" : "Status: Beta service" ,
+    "hasFormat" : [ "http://environment.data.gov.uk/flood-monitoring/id/stations/E72639.rdf", "http://environment.data.gov.uk/flood-monitoring/id/stations/E72639.ttl", "http://environment.data.gov.uk/flood-monitoring/id/stations/E72639.html" ]
+  }
+   ,
+  "items" : { 
+    "@id" : "http://environment.data.gov.uk/flood-monitoring/id/stations/E72639" ,
+    "RLOIid" : "3014" ,
+    "catchmentName" : "England - South Coast" ,
+    "dateOpened" : "2012-02-24" ,
+    "eaAreaName" : "Anglian - Wessex" ,
+    "eaRegionName" : "Anglian" ,
+    "easting" : 349530 ,
+    "gridReference" : "ST 4953 7815" ,
+    "label" : "Avonmouth Portbury" ,
+    "lat" : 51.49999 ,
+    "long" : -2.728468 ,
+    "measures" : { 
+      "@id" : "http://environment.data.gov.uk/flood-monitoring/id/measures/E72639-level-tidal_level-Mean-15_min-mAOD" ,
+      "datumType" : "http://environment.data.gov.uk/flood-monitoring/def/core/datumAOD" ,
+      "label" : "Avonmouth Portbury - level-tidal_level-Mean-15_min-mAOD" ,
+      "latestReading" : { 
+        "@id" : "http://environment.data.gov.uk/flood-monitoring/data/readings/E72639-level-tidal_level-Mean-15_min-mAOD/2023-03-29T11-15-00Z" ,
+        "date" : "2023-03-29" ,
+        "dateTime" : "2023-03-29T11:15:00Z" ,
+        "measure" : "http://environment.data.gov.uk/flood-monitoring/id/measures/E72639-level-tidal_level-Mean-15_min-mAOD" ,
+        "value" : 3.216
+      }
+       ,
+      "localDatumMeasure" : "http://environment.data.gov.uk/flood-monitoring/id/measures/E72624-level-tidal_level-Mean-15_min-m" ,
+      "notation" : "E72639-level-tidal_level-Mean-15_min-mAOD" ,
+      "parameter" : "level" ,
+      "parameterName" : "Water Level" ,
+      "period" : 900 ,
+      "qualifier" : "Tidal Level" ,
+      "station" : "http://environment.data.gov.uk/flood-monitoring/id/stations/E72639" ,
+      "stationReference" : "E72639" ,
+      "type" : [ "http://environment.data.gov.uk/flood-monitoring/def/core/Measure", "http://environment.data.gov.uk/flood-monitoring/def/core/WaterLevel" ] ,
+      "unit" : "http://qudt.org/1.1/vocab/unit#Meter" ,
+      "unitName" : "mAOD" ,
+      "valueType" : "mean"
+    }
+     ,
+    "northing" : 178147 ,
+    "notation" : "E72639" ,
+    "riverName" : "Tide" ,
+    "stageScale" : { 
+      "@id" : "http://environment.data.gov.uk/flood-monitoring/id/stations/E72639/stageScale" ,
+      "datum" : 0 ,
+      "maxOnRecord" : { 
+        "@id" : "http://environment.data.gov.uk/flood-monitoring/id/stations/E72639/stageScale/maxOnRecord" ,
+        "dateTime" : "2014-01-03T08:15:00" ,
+        "value" : 8.626
+      }
+       ,
+      "scaleMax" : 10
+    }
+     ,
+    "stationReference" : "E72639" ,
+    "status" : "http://environment.data.gov.uk/flood-monitoring/def/core/statusActive" ,
+    "statusDate" : "2017-10-25T08:00:00" ,
+    "town" : "Avonmouth" ,
+    "type" : [ "http://environment.data.gov.uk/flood-monitoring/def/core/Coastal", "http://environment.data.gov.uk/flood-monitoring/def/core/Station", "http://environment.data.gov.uk/flood-monitoring/def/core/TideGauge" ] ,
+    "wiskiID" : "530102_FW"
+  }
+}
+

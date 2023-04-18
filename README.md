@@ -8,7 +8,7 @@ Follow the instructions [here](https://github.com/CreativeInquiry/PEmbroider#get
 
 ### Template File
 
-All files in PEmbroider have a similar structure, and the [cheat sheet]((https://github.com/CreativeInquiry/PEmbroider/blob/master/PEmbroider_Cheat_Sheet.md) ) helpfully provides a template, which I've adapted slightly to match the file format we use in the CCI. We'll be using this as the basis for all the files in the workshop. This file draws a single line, but we can change that to anything we like.
+All files in PEmbroider have a similar structure, and the [cheat sheet](https://github.com/CreativeInquiry/PEmbroider/blob/master/PEmbroider_Cheat_Sheet.md) helpfully provides a template, which I've adapted slightly to match the file format we use in the CCI. We'll be using this as the basis for all the files in the workshop. This file draws a single line, but we can change that to anything we like.
 
 ```java
 // Example PEmbroider program
@@ -79,6 +79,8 @@ This means that (x1, y1) is the coordinates of the point where the line starts, 
 * Can you make the line draw only halfway across the original canvas?
 * Are you able to draw a vertical line? What about drawing 2 lines?
 
+You might find these notes on [coordinate grids in Processing](https://py.processing.org/tutorials/drawing/) helpful here!
+
 ## 2. Playing with shapes
 
 From now on, unless we're changing more of the file, I'm going to list just the 'content' code that we're changing, using `...` to represent the rest of the file. In our last exercise, the content was a single line -- the `E.line()` method -- but it can be more -- the important part is that it goes in the same place in the file each time.
@@ -87,7 +89,7 @@ Try changing out the line for a circle:
 
 ```
 ...
-E.circle(200, 200, 200)
+E.circle(200, 200, 200);
 ...
 ```
 
@@ -301,9 +303,66 @@ Now we get a whole grid of circles!
 Here's one I made earlier:
 [![](https://wiki.cci.arts.ac.uk/uploads/images/gallery/2022-08/scaled-1680-/EFBLrrMZUYEnEysD-image-1660230369677-06-05.png)](https://wiki.cci.arts.ac.uk/uploads/images/gallery/2022-08/EFBLrrMZUYEnEysD-image-1660230369677-06-05.png)
 
-## 6. Further reading and extension exercises
+## 6. Polylines and curves
 
-We've scratched the surface of PEmbroider's [full capabilities](https://github.com/CreativeInquiry/PEmbroider/blob/master/API.md), which include things like Bézier curves, image imports, interpolation, clipping and more.
+As well as having preset shapes, PEmbroider (like Processing) supports making custom shapes by defining a set of points along a line. To start one of these shapes, you need to bookend the line with:
+
+```
+E.beginShape();
+  // ...points
+E.endShape();
+```
+
+If the final co-ordinate matches the first co-ordinate, we can also fill the shape: if not, it's just a stroke. Polylines are also great as within the line the machine doesn't need to make a jump; this is helpful for avoiding too many floats later on.
+
+Each point on the line is given by `E.vertex(x, y)`, a single point in space. To draw a spiky shape, we can draw a bunch of points:
+
+```
+E.beginShape();
+  E.vertex(10,10);
+  E.vertex(500,50);
+  E.vertex(450,250);
+  E.vertex(350,140);
+  E.vertex(200,300);
+  E.vertex(10,10);
+E.endShape();
+```
+
+#### Exercise 6.1
+* Have a go at making a shape of your own: can you make a 5-pointed star? Can you add a fill?
+
+### Curves
+
+There are a number of different ways to render curves in Processing, which inherit from the different curve-drawing techniques in computer graphics. These are: arcs, splines and Bézier curves. The Processing [curves tutorial](https://processing.org/tutorials/curves) has a good summary of this:
+
+* Use `arc()` when you need a segment of a circle or an ellipse. You can't make continuous arcs or use them as part of a shape.
+* Use `curve()` (the spline function) when you need a small curve between two points. Use `curveVertex()` to make a continuous series of curves as part of a shape.
+* Use `bezier()` when you need long, smooth curves. Use `bezierVertex()` to make a continuous series of Bézier curves as part of a shape.
+
+The [tutorial](https://processing.org/tutorials/curves) gives a great overview of the different types and I'd recommend experimenting with all of them.
+
+
+## 7. Tips, notes, further reading and extension exercises
+
+We've scratched the surface of PEmbroider's [full capabilities](https://github.com/CreativeInquiry/PEmbroider/blob/master/API.md), which include things like image imports, interpolation, clipping and more.
+
+### 7.1 Saving files + naming
+
+To save the file as an embroidery file, you need to 
+
+```
+  String outputFilePath = sketchPath("triangles" + str(int(random(0, 100))) + ".pes"); 
+```
+
+### 7.1 Scale, density and stitch sizing
+
+I personally find PEmbroider's presets a bit dense, and think they make for quite tough-feeling embroidery. My main recommendation is to make a sample sheet where you experiment with different fill densities, stitch lengths and stroke widths till you find some you like, but failing that, my defaults are:
+
+```
+
+```
+
+If you want to use these throughout, just stick this above the 'content' section of your file.
 
 ### Extension exercises
 
