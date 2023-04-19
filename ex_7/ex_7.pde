@@ -23,21 +23,21 @@ void setup() {
 
   //circles
  
-  int num=0;
+  int counter=0;
   int rowLength = 13;
   int spacing = round(900/(rowLength));
 
   for (TableRow row : table.rows()) {
-    int i = num % rowLength;
-    int j = floor(num/rowLength);
+    int i = counter % rowLength;
+    int j = floor(counter/rowLength);
     
-    //int id = row.getInt("id");
     int year = row.getInt("year");
     float temp = row.getFloat("unsmoothed");
     float radius = (temp + 1.0)*45;
+  
     E.circle((i+1)*spacing, (j+1)*spacing, radius);
     println("year " + year + " temp " + temp);
-    num=num+1;
+    counter=counter+1;
   }
   
   
@@ -60,6 +60,24 @@ void setup() {
   //  num=num+1;
   //}
   //E.endComposite();
+  
+  //lines
+  //E.beginShape();
+  //E.vertex(100, 100);
+  //int num=0;
+  //int rowLength = 13;
+  //int spacing = round(900/(rowLength));
+  //for (TableRow row : table.rows()) {
+  //  int i = num % rowLength;
+  //  int j = floor(num/rowLength);
+  //  print(i,j);
+  //  float temp = row.getFloat("unsmoothed");
+  //  float radius = (temp + 0.8)/2;
+  //  float n = radius*width;
+  //  E.line(n, 0, n, height);
+  //}
+  //E.endShape();
+
 
   // E.optimize(); // VERY SLOW, but essential for file output! 
   E.visualize(true, true, false);   // Display the embroidery path on-screen.

@@ -18,15 +18,15 @@ void setup() {
   //-------
   // Content goes here:
   
-  //E.beginShape();
-  //E.vertex(100, 100);
-  //for (int i = 1; i < 10; i++) {
-  //  for (int j = 1; j < 10; j++) {
-  //    //E.vertex(100*j, 100*i);
-  //    E.bezierVertex(i*i*10 + (100-i), 0, i*50, j*100 + (150-j), i*50 - 10, i*50);
-  //  }
-  //}
-  //E.endShape();
+  E.beginShape();
+  E.vertex(100, 100);
+  for (int i = 1; i < 10; i++) {
+    for (int j = 1; j < 10; j++) {
+      //E.vertex(100*j, 100*i);
+      E.bezierVertex(i*i*10 + (100-i), 0, i*50, j*100 + (150-j), i*50 - 10, i*50);
+    }
+  }
+  E.endShape();
   
  
   // non-continuous bezier
@@ -76,33 +76,33 @@ void setup() {
   // importantly the second point needs to be *inbetween*
  
   
-  E.beginShape();
-  int offset = 0;
-  float nextPointx = offset;
-  float nextPointy = offset;
-  E.vertex(nextPointx, nextPointy);
-  for (int i = 1; i < 10; i++) {
-      for (int j = 1; j < 10; j++) {
-      E.stroke(0, 0, 0);
+//  E.beginShape();
+//  int offset = 0;
+//  float nextPointx = offset;
+//  float nextPointy = offset;
+//  E.vertex(nextPointx, nextPointy);
+//  for (int i = 1; i < 10; i++) {
+//      for (int j = 1; j < 10; j++) {
+//      E.stroke(0, 0, 0);
 
-    float randPoint1x = 50*i;
-    float randPoint1y = 100*j-50;
-    float randPoint2x = 100*i;
-    float randPoint2y = 100*i-100;
-    float midPointx = (randPoint2x + randPoint1x)/2;
-    float midPointy = (randPoint2y + randPoint1y)/2;
+//    float randPoint1x = 50*i;
+//    float randPoint1y = 100*j-50;
+//    float randPoint2x = 100*i;
+//    float randPoint2y = 100*i-100;
+//    float midPointx = (randPoint2x + randPoint1x)/2;
+//    float midPointy = (randPoint2y + randPoint1y)/2;
     
-    E.bezierVertex(nextPointx, nextPointy, randPoint1x, randPoint1y, midPointx, midPointy);
-    //E.line(randPoint1x, randPoint1y, randPoint2x, randPoint2y);
+//    E.bezierVertex(nextPointx, nextPointy, randPoint1x, randPoint1y, midPointx, midPointy);
+//    //E.line(randPoint1x, randPoint1y, randPoint2x, randPoint2y);
     
-    nextPointx = randPoint2x;
-    nextPointy = randPoint2y;
+//    nextPointx = randPoint2x;
+//    nextPointy = randPoint2y;
 
-    //E.stroke(255, 0, 0);
-    //E.line(nextPointx, nextPointy, randPoint2x, randPoint2y);
-}
-  }
-  E.endShape();
+//    //E.stroke(255, 0, 0);
+//    //E.line(nextPointx, nextPointy, randPoint2x, randPoint2y);
+//}
+//  }
+//  E.endShape();
   
   
   //----------  
